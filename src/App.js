@@ -1,7 +1,7 @@
 import * as React from 'react';
 import UsersList from './UsersList'
 
-const AllUsers = ['Michał', 'Kasia', 'Jacek', 'Marta', 'Tomek', 'Ania'];
+const allUsers = ['Michał', 'Kasia', 'Jacek', 'Marta', 'Tomek', 'Ania'];
 
 class App extends React.Component {
   constructor() {
@@ -21,7 +21,7 @@ class App extends React.Component {
   }
 
   getFilteredUsersForText(text){
-    return AllUsers.filter(user => user.toLowerCase().includes(text.toLowerCase()))
+    return allUsers.filter(user => user.toLowerCase().includes(text.toLowerCase()))
   }
 
   render(){
