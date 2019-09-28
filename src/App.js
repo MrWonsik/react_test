@@ -13,7 +13,7 @@ class App extends React.Component {
   }
   
   filterUsers = (e) => {
-    const text = e.currentTarger.value;
+    const text = e.currentTarget.value;
     const filteredUsers = this.getFilteredUsersForText(text)
     this.setState({
       filteredUsers
