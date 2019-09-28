@@ -1,10 +1,11 @@
 import * as React from 'react';
+import { Form } from 'react-bootstrap'
 
 const TasksList = ({tasks}) => {
       return (
-        <ul>
-            {tasks.map(task => <li key={task}>{task}</li>)}
-        </ul>
+        <Form.Group>
+            {tasks.map(task => <Form.Check type="checkbox" key={task} label={task}/>)}
+        </Form.Group>
       );
 }
 
