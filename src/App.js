@@ -1,34 +1,37 @@
 import * as React from 'react';
-import UsersList from './UsersList'
-
-const allUsers = ['Michał', 'Kasia', 'Jacek', 'Marta', 'Tomek', 'Ania'];
+import TasksList from './TasksList';
 
 class App extends React.Component {
   constructor() {
     super();
 
     this.state = {
-      filteredUsers: allUsers,
+      tasks: ['Task#1', 'Task#2', 'Task#3', 'Task#4', 'Task#5', 'Task#6'],
+      newTask: null
     };
   }
   
-  filterUsers = (e) => {
-    const text = e.currentTarget.value;
-    const filteredUsers = this.getFilteredUsersForText(text)
-    this.setState({
-      filteredUsers
-    })
+  saveInput = (e) => {
+    this.setState({ newTask: e.currentTarget.value });
   }
 
-  getFilteredUsersForText(text){
-    return allUsers.filter(user => user.toLowerCase().includes(text.toLowerCase()))
+  addTask = () => {
+    this.setState(state => {
+      const tasks = state.tasks.push(state.newTask);
+
+      return {
+        tasks,
+        newTask: '',
+      };
+    });
   }
 
   render(){
     return (
         <div>
-          <input onInput={this.filterUsers} />
-          <UsersList users={this.state.filteredUsers} />
+          <input onInput={this.saveInput} />
+          <button onClick={this.addTask}>Add task!</button>
+          <TasksList tasks={this.state.tasks} />
         </div>
       );
   }
