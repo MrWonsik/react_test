@@ -1,12 +1,11 @@
 import * as React from 'react';
 
 const TasksList = ({tasks}) => {
-    return (
-      <div>
-          {tasks.map(task => <li key={task}>{task}</li>)}
-      </div>
+      return (
+        <ul>
+            {tasks.map(task => <li key={task}>{task}</li>)}
+        </ul>
       );
-
 }
 
 export default TasksList;
