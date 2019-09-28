@@ -21,7 +21,7 @@ class App extends React.Component {
   }
 
   getFilteredUsersForText(text){
-    return allUsers.filter(user => user.toLowerCase().includes(text.toLowerCase()))
+    return AllUsers.filter(user => user.toLowerCase().includes(text.toLowerCase()))
   }
 
   render(){
