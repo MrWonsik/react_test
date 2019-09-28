@@ -9,7 +9,7 @@ class App extends React.Component {
 
     this.state = {
       tasks: allTasks,
-      newTask: null
+      newTask: null,
     };
   }
   
@@ -33,7 +33,7 @@ class App extends React.Component {
   render(){
     return (
         <div>
-          <input onInput={this.saveInput} />
+          <input value={this.state.newTask} onInput={this.saveInput} />
           <button onClick={this.addTask}>Add task!</button>
           <TasksList tasks={this.state.tasks} />
         </div>
