@@ -1,3 +1,13 @@
+# Task planner frontend for REST API
+
+I create a frontend to [REST API](https://github.com/MrWonsik/task_planner). I using *REACT*, *react-bootsrap*.
+
+## TODO:
+- deleting task
+- editing task
+- mark a task as complete
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts

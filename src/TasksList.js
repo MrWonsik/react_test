@@ -1,12 +1,24 @@
 import * as React from 'react';
-import { Form } from 'react-bootstrap'
+import Task from './Task';
+import { Form } from 'react-bootstrap';
 
-const TasksList = ({tasks}) => {
+export class TasksList extends React.Component {
+  taskToTasksList = task => {
+    const id = task.id;
+    const taskDescription = task.description;
+    const made = task.made;
+    return <Task key={id} description={taskDescription} made={made} />;
+  };
+
+  render() {
       return (
         <Form.Group>
-            {tasks.map(task => <Form.Check type="checkbox" key={task} label={task}/>)}
+            {this.props.tasks.map(this.taskToTasksList)}
         </Form.Group>
       );
+  }
 }
+
+
 
 export default TasksList;
