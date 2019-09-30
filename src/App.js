@@ -1,14 +1,19 @@
 import * as React from 'react';
 import './App.css';
 import TasksList from './TasksList';
-import { Button, InputGroup, FormControl, Tabs, Tab } from 'react-bootstrap';
+import { Button, InputGroup, FormControl, Tabs, Tab, Spinner } from 'react-bootstrap';
 
-const API = "http://192.168.0.101:8080/planner/";
-const GET_madeTasks = 'getMadedTasks';
-const GET_tasksToDo = 'getTasksToDo';
-const POST_addTask = 'addTask';
+export const API = "http://192.168.0.101:8080/planner/";
+export const GET_madeTasks = 'getMadeTasks';
+export const GET_tasksToDo = 'getTasksToDo';
+export const POST_addTask = 'addTask';
+export const DELETE_deleteTask = 'deleteTask/';
+export const PUT_completeTask = 'completeTask/';
+export const PUT_undoCompleteTask = 'undoCompleteTask/';
 
 export class App extends React.Component {
+
+
   constructor() {
     super();
 
@@ -30,10 +35,10 @@ export class App extends React.Component {
             </InputGroup>
             <Tabs defaultActiveKey="todo" id="uncontrolled-tab-example">
               <Tab eventKey="todo" title="Tasks TODO">
-                <TasksList tasks={this.state.tasksToDo} />
+                {(() => this.tasksToDo.isEmpty()) ? <TasksList tasks={this.state.tasksToDo} /> : <Spinner animation="border"/> }
               </Tab>
               <Tab eventKey="completed" title="Tasks completed">
-                <TasksList tasks={this.state.tasksComplete} />
+                {(() => this.tasksComplete.isEmpty()) ? <TasksList tasks={this.state.tasksComplete} /> : <Spinner animation="border"/> }
               </Tab>
             </Tabs>
         </div>
@@ -75,9 +80,13 @@ export class App extends React.Component {
       body: this.state.newTask
     });
 
-    this.setState(state => {
-      this.componentDidMount();
 
+
+
+    this.setState(state => {
+
+      this.componentDidMount();
+      
       return {
         newTask: '',
       };

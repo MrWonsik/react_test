@@ -2,10 +2,18 @@
 
 I create a frontend to [REST API](https://github.com/MrWonsik/task_planner). I using *REACT*, *react-bootsrap*.
 
+## Features:
+
+- connectivity to database,
+- different tabs for completed and todo tasks,
+- adding task,
+- deleting task,
+- undoying completed task,
+
 ## TODO:
-- deleting task
-- editing task
-- mark a task as complete
+- editing task,
+- refreshing after add, delete, edit and undo task,
+
 
 # Create React App:
 
