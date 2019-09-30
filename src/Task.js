@@ -13,7 +13,7 @@ export class Task extends React.Component {
         <Col md = "auto">
           <ButtonGroup>
             { !this.props.made 
-              ? <Button variant="success" size="sm" onClick={() => this.completeTask(this.props.id) }><FontAwesomeIcon icon={ faCheck } onClick={ this.completeTask }/></Button> 
+              ? <Button variant="success" size="sm" onClick={() => this.completeTask(this.props.id) }><FontAwesomeIcon icon={ faCheck }/></Button> 
               : <Button variant="secondary" size="sm" onClick={() => this.undoTask(this.props.id) }><FontAwesomeIcon icon={ faUndo } /></Button> 
             }
             <Button variant="danger" size="sm" onClick={() => this.deleteTask(this.props.id) }><FontAwesomeIcon icon = {faTimes }/></Button>
