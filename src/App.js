@@ -1,10 +1,11 @@
 import * as React from 'react';
 import './App.css';
 import TasksList from './TasksList';
-import { Button, InputGroup, FormControl } from 'react-bootstrap';
+import { Button, InputGroup, FormControl, Tabs, Tab } from 'react-bootstrap';
 
 const API = "http://192.168.0.101:8080/planner/";
-const GET_allTasks = 'getAllTasks';
+const GET_madeTasks = 'getMadedTasks';
+const GET_tasksToDo = 'getTasksToDo';
 const POST_addTask = 'addTask';
 
 export class App extends React.Component {
@@ -12,7 +13,8 @@ export class App extends React.Component {
     super();
 
     this.state = {
-      tasks: [],
+      tasksToDo: [],
+      tasksComplete: [],
       newTask: '',
     };
   }
@@ -26,7 +28,14 @@ export class App extends React.Component {
                 <Button variant="outline-info" onClick={this.addTask}>Add task!</Button>  
               </InputGroup.Append>  
             </InputGroup>
-          <TasksList tasks={this.state.tasks} />
+            <Tabs defaultActiveKey="todo" id="uncontrolled-tab-example">
+              <Tab eventKey="todo" title="Tasks TODO">
+                <TasksList tasks={this.state.tasksToDo} />
+              </Tab>
+              <Tab eventKey="completed" title="Tasks completed">
+                <TasksList tasks={this.state.tasksComplete} />
+              </Tab>
+            </Tabs>
         </div>
 
       );
@@ -34,11 +43,18 @@ export class App extends React.Component {
   }
 
   componentDidMount(){
-    fetch(API + GET_allTasks)
+    fetch(API + GET_tasksToDo)
       .then(res => res.json())
-      .then(json => this.setState({ tasks: json }))
+      .then(json => this.setState({ tasksToDo: json }))
       .catch((error) => {
-        this.setState({ tasks: []});
+        this.setState({ tasksToDo: []});
+    })
+
+    fetch(API + GET_madeTasks)
+      .then(res => res.json())
+      .then(json => this.setState({ tasksComplete: json }))
+      .catch((error) => {
+        this.setState({ tasksComplete: []});
     })
   }
   
