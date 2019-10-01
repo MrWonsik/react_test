@@ -7,9 +7,6 @@ import { Button, InputGroup, FormControl, Tabs, Tab, Spinner } from 'react-boots
  const GET_madeTasks = 'getMadeTasks';
  const GET_tasksToDo = 'getTasksToDo';
  const POST_addTask = 'addTask';
- const DELETE_deleteTask = 'deleteTask/';
- const PUT_completeTask = 'completeTask/';
- const PUT_undoCompleteTask = 'undoCompleteTask/';
 
  class App extends React.Component {
 
@@ -37,10 +34,10 @@ import { Button, InputGroup, FormControl, Tabs, Tab, Spinner } from 'react-boots
             </InputGroup>
             <Tabs defaultActiveKey="todo" id="uncontrolled-tab-example">
               <Tab eventKey="todo" title="Tasks TODO">
-                {  !this.state.isLoading  ? <TasksList tasks={ this.state.tasksToDo } onTasksDelete={this.deleteTask} onTasksComplete={this.completeTask} /> : <center><Spinner animation="border" ></Spinner></center> }
+                {  !this.state.isLoading  ? <TasksList tasks={ this.state.tasksToDo } onRequestMethod={this.doRequest} /> : <center><Spinner animation="border" ></Spinner></center> }
               </Tab>
               <Tab eventKey="completed" title="Tasks completed">
-                {  !this.state.isLoading  ? <TasksList tasks={ this.state.tasksComplete } onTasksUndo={this.undoTask}/> : <center><Spinner animation="border" ></Spinner></center> }
+                {  !this.state.isLoading  ? <TasksList tasks={ this.state.tasksComplete } onRequestMethod={this.doRequest}/> : <center><Spinner animation="border" ></Spinner></center> }
               </Tab>
             </Tabs>
         </div>
@@ -75,6 +72,21 @@ import { Button, InputGroup, FormControl, Tabs, Tab, Spinner } from 'react-boots
     });
   }
 
+  doRequest = (id, requestMethod, method) => {
+    fetch(requestMethod + id, {
+      method: method,
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      }
+    }).then(response => {
+      if (response.status === 200) {
+        this.fetchTasksList(); 
+      }
+    });
+  }
+
+
   addTask = () => {
     fetch(API + POST_addTask, {
       method: 'POST',
@@ -89,48 +101,6 @@ import { Button, InputGroup, FormControl, Tabs, Tab, Spinner } from 'react-boots
         this.setState({ newTask: '' });
       }
     });
-  }
-
-  deleteTask = (id) => {
-    fetch(API + DELETE_deleteTask + id, {
-      method: 'DELETE',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
-      }
-    }).then(response => {
-      if (response.status === 200) {
-        this.fetchTasksList(); 
-      }
-    });
-  }
-
-  completeTask = (id) => {
-    fetch(API + PUT_completeTask + id, {
-      method: 'PUT',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
-      },
-    }).then(response => {
-      if (response.status === 200) {
-        this.fetchTasksList(); 
-      }
-    });    
-  }
-
-  undoTask = (id) => {
-    fetch(API + PUT_undoCompleteTask + id, {
-      method: 'PUT',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
-      },
-    }).then(response => {
-      if (response.status === 200) {
-        this.fetchTasksList(); 
-      }
-    });    
   }
 
 }

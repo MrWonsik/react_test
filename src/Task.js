@@ -1,4 +1,5 @@
 import * as React from 'react';
+import * as RequestMethod from './RequestMethod'
 import './Task.css';
 import { Row, Col, Button, ButtonGroup } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -13,10 +14,18 @@ class Task extends React.Component {
         <Col md = "auto">
           <ButtonGroup>
             { !this.props.made 
-              ? <Button variant="success" size="sm" onClick={() => this.props.onTasksComplete(this.props.id) }><FontAwesomeIcon icon={ faCheck }/></Button> 
-              : <Button variant="secondary" size="sm" onClick={() => this.props.onTasksUndo(this.props.id) }><FontAwesomeIcon icon={ faUndo } /></Button> 
+              
+              ? <Button variant="success" size="sm" onClick={() => this.props.onRequestMethod(this.props.id, RequestMethod.PUT_completeTask, 'PUT') }>
+                  <FontAwesomeIcon icon={ faCheck }/>
+                </Button> 
+              
+              : <Button variant="secondary" size="sm" onClick={() => this.props.onRequestMethod(this.props.id, RequestMethod.PUT_undoCompleteTask, 'PUT') }>
+                  <FontAwesomeIcon icon={ faUndo } />
+                </Button> 
             }
-            <Button variant="danger" size="sm" onClick={() => this.props.onTasksDelete(this.props.id) }><FontAwesomeIcon icon = {faTimes }/></Button>
+            <Button variant="danger" size="sm" onClick={() => this.props.onRequestMethod(this.props.id, RequestMethod.DELETE_deleteTask, 'DELETE') }>
+              <FontAwesomeIcon icon = {faTimes }/>
+            </Button>
           </ButtonGroup>
         </Col>
       </Row>

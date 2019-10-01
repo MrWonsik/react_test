@@ -9,7 +9,7 @@ class TasksList extends React.Component {
     const id = task.id;
     const taskDescription = task.description;
     const made = task.made;
-    return <Task key={id} id={id} description={taskDescription} made={made} onTasksDelete={this.props.onTasksDelete} onTasksComplete={this.props.onTasksComplete} onTasksUndo={this.props.onTasksUndo}/>;
+    return <Task key={id} id={id} description={taskDescription} made={made} onRequestMethod={this.props.onRequestMethod}/>;
   };
 
   render() {
