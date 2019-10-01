@@ -7,7 +7,7 @@ export class TasksList extends React.Component {
     const id = task.id;
     const taskDescription = task.description;
     const made = task.made;
-    return <Task id={id} description={taskDescription} made={made} />;
+    return <Task key={id} id={id} description={taskDescription} made={made} />;
   };
 
   render() {

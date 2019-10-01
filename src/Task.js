@@ -8,7 +8,7 @@ import { faCheck, faTimes, faUndo } from '@fortawesome/free-solid-svg-icons';
 export class Task extends React.Component {
   render(){
     return (
-      <Row key={this.props.id} className="row-with-padding">    
+      <Row className="row-with-padding">    
         <Col><center>{this.props.description}</center></Col>
         <Col md = "auto">
           <ButtonGroup>

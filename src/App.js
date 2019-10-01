@@ -14,17 +14,19 @@ export const PUT_undoCompleteTask = 'undoCompleteTask/';
 export class App extends React.Component {
 
 
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
     this.state = {
       tasksToDo: [],
       tasksComplete: [],
       newTask: '',
+      isLoading: true,
     };
   }
 
   render(){
+    console.log("render");
     return (
         <div id="content">
             <InputGroup className="mb-3">
@@ -35,34 +37,34 @@ export class App extends React.Component {
             </InputGroup>
             <Tabs defaultActiveKey="todo" id="uncontrolled-tab-example">
               <Tab eventKey="todo" title="Tasks TODO">
-                {(() => this.tasksToDo.isEmpty()) ? <TasksList tasks={this.state.tasksToDo} /> : <Spinner animation="border"/> }
+                {  !this.state.isLoading  ? <TasksList tasks={ this.state.tasksToDo } /> : <center><Spinner animation="border" ></Spinner></center> }
               </Tab>
               <Tab eventKey="completed" title="Tasks completed">
-                {(() => this.tasksComplete.isEmpty()) ? <TasksList tasks={this.state.tasksComplete} /> : <Spinner animation="border"/> }
+                {  !this.state.isLoading  ? <TasksList tasks={ this.state.tasksComplete } /> : <center><Spinner animation="border" ></Spinner></center> }
               </Tab>
             </Tabs>
         </div>
 
       );
-      
   }
 
-  componentDidMount(){
-    fetch(API + GET_tasksToDo)
+  async componentDidMount(){
+    console.log("componentDidMount");
+      this.setState({ isLoading: true});
+      fetch(API + GET_tasksToDo)
       .then(res => res.json())
-      .then(json => this.setState({ tasksToDo: json }))
+      .then(json => this.setState({ tasksToDo: json, isLoading: false}))
       .catch((error) => {
-        this.setState({ tasksToDo: []});
+        this.setState({ tasksToDo: [], isLoading: false});
     })
 
-    fetch(API + GET_madeTasks)
+      fetch(API + GET_madeTasks)
       .then(res => res.json())
-      .then(json => this.setState({ tasksComplete: json }))
+      .then(json => this.setState({ tasksComplete: json, isLoading: false }))
       .catch((error) => {
-        this.setState({ tasksComplete: []});
+        this.setState({ tasksComplete: [], isLoading: false});
     })
-  }
-  
+  }  
 
   saveInput = (e) => {
     this.setState({ 
@@ -71,6 +73,7 @@ export class App extends React.Component {
   }
 
   addTask = () => {
+    console.log("addtask");
     fetch(API + POST_addTask, {
       method: 'POST',
       headers: {
@@ -78,18 +81,11 @@ export class App extends React.Component {
         'Content-Type': 'application/json',
       },
       body: this.state.newTask
-    });
-
-
-
-
-    this.setState(state => {
-
-      this.componentDidMount();
-      
-      return {
-        newTask: '',
-      };
+    }).then(response => {
+      if (response.status === 200) {
+        this.componentDidMount(); 
+        this.setState({ newTask: '' });
+      }
     });
   }
 }
