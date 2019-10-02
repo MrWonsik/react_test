@@ -1,12 +1,8 @@
 import * as React from 'react';
+import * as RequestMethod from './RequestMethod'
 import './App.css';
 import TasksList from './TasksList';
 import { Button, InputGroup, FormControl, Tabs, Tab, Spinner } from 'react-bootstrap';
-
- const API = "http://192.168.0.101:8080/planner/";
- const GET_madeTasks = 'getMadeTasks';
- const GET_tasksToDo = 'getTasksToDo';
- const POST_addTask = 'addTask';
 
  class App extends React.Component {
 
@@ -33,10 +29,10 @@ import { Button, InputGroup, FormControl, Tabs, Tab, Spinner } from 'react-boots
               </InputGroup.Append>  
             </InputGroup>
             <Tabs defaultActiveKey="todo" id="uncontrolled-tab-example">
-              <Tab eventKey="todo" title="Tasks TODO">
+              <Tab eventKey="todo" title="TODO">
                 {  !this.state.isLoading  ? <TasksList tasks={ this.state.tasksToDo } onRequestMethod={this.doRequest} /> : <center><Spinner animation="border" ></Spinner></center> }
               </Tab>
-              <Tab eventKey="completed" title="Tasks completed">
+              <Tab eventKey="completed" title="Complete">
                 {  !this.state.isLoading  ? <TasksList tasks={ this.state.tasksComplete } onRequestMethod={this.doRequest}/> : <center><Spinner animation="border" ></Spinner></center> }
               </Tab>
             </Tabs>
@@ -47,14 +43,14 @@ import { Button, InputGroup, FormControl, Tabs, Tab, Spinner } from 'react-boots
 
   fetchTasksList() {
     this.setState({ isLoading: true});
-    fetch(API + GET_tasksToDo)
+    fetch(RequestMethod.GET_tasksToDo)
     .then(res => res.json())
     .then(json => this.setState({ tasksToDo: json, isLoading: false}))
     .catch((error) => {
       this.setState({ tasksToDo: [], isLoading: false});
     })
 
-    fetch(API + GET_madeTasks)
+    fetch(RequestMethod.GET_madeTasks)
     .then(res => res.json())
     .then(json => this.setState({ tasksComplete: json, isLoading: false }))
     .catch((error) => {
@@ -88,7 +84,7 @@ import { Button, InputGroup, FormControl, Tabs, Tab, Spinner } from 'react-boots
 
 
   addTask = () => {
-    fetch(API + POST_addTask, {
+    fetch(RequestMethod.POST_addTask, {
       method: 'POST',
       headers: {
         'Accept': 'application/json',

@@ -1,10 +1,11 @@
 import * as React from 'react';
+import './TasksList.css';
 import Task from './Task';
-import { Container } from 'react-bootstrap';
+import { Container, Alert } from 'react-bootstrap';
 
 class TasksList extends React.Component {
 
-
+  
   taskToTasksList = task => {
     const id = task.id;
     const taskDescription = task.description;
@@ -13,12 +14,13 @@ class TasksList extends React.Component {
   };
 
   render() {
+
       return (
-        <Container>
-            {this.props.tasks.map(this.taskToTasksList)}
+        <Container className="tasks-container">
+            { this.props.tasks.length === 0 ? <Alert variant='info'><center>This tasks list is empty!</center></Alert> : this.props.tasks.map(this.taskToTasksList) }
         </Container>
       );
-  }
+    } 
 
 }
 
