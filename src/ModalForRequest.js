@@ -8,8 +8,6 @@ import { Button, Modal} from 'react-bootstrap';
 
     this.state = {
       show: false,
-      modalTitle: "default name",
-      modalBody: "some body",
     };
 
     this.toggle = this.toggle.bind(this);
@@ -26,17 +24,12 @@ import { Button, Modal} from 'react-bootstrap';
       <div>
       <Button variant={this.props.buttonVariant} size={this.props.buttonSize || "sm"} onClick={this.toggle}>{this.props.buttonLabel}</Button>
       <Modal show={this.state.show} onHide={this.toggle}>
-        <Modal.Header closeButton>
-          <Modal.Title>{this.state.modalTitle}</Modal.Title>
-        </Modal.Header>
-
         <Modal.Body>
-          {this.state.modalBody}
+          <center>{this.props.modalBody}</center>
         </Modal.Body>
-
         <Modal.Footer>
-          <Button variant="danger" onClick={this.props.handlerNo}>No</Button>
-          <Button variant="success" onClick={this.props.handlerYes}>Yes</Button>
+          <Button variant="secondary" size="sm" onClick={this.toggle}>No</Button>
+          <Button variant="primary" size="sm" onClick={this.props.handlerYes}>Yes</Button>
         </Modal.Footer>
       </Modal>
     </div>

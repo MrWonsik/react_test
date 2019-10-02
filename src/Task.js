@@ -1,5 +1,6 @@
 import * as React from 'react';
 import * as RequestMethod from './RequestMethod'
+import ModalForRequest from './ModalForRequest'
 import './Task.css';
 import { Row, Col, Button, ButtonGroup } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -23,9 +24,13 @@ class Task extends React.Component {
                   <FontAwesomeIcon icon={ faUndo } />
                 </Button> 
             }
-            <Button variant="danger" size="sm" onClick={() => this.props.onRequestMethod(this.props.id, RequestMethod.DELETE_deleteTask, 'DELETE') }>
-              <FontAwesomeIcon icon = {faTimes }/>
-            </Button>
+              <ModalForRequest 
+              modalTitle="DELETE"
+              modalBody={"Are you really want to delete this item?"}
+              buttonVariant="danger" 
+              buttonLabel={<FontAwesomeIcon icon = {faTimes}/>}
+              handlerYes={() => this.props.onRequestMethod(this.props.id, RequestMethod.DELETE_deleteTask, 'DELETE')}
+              />
           </ButtonGroup>
         </Col>
       </Row>
