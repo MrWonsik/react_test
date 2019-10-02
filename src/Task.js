@@ -1,6 +1,7 @@
 import * as React from 'react';
 import * as RequestMethod from './RequestMethod'
 import ModalForRequest from './ModalForRequest'
+import TaskDateFormatter from './TaskDateFormatter'
 import './Task.css';
 import { Row, Col, Button, ButtonGroup } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -11,8 +12,9 @@ class Task extends React.Component {
 
     return (
       <Row className="row-with-padding">    
-        <Col><center>{this.props.description}</center></Col>
-        <Col md = "auto">
+        <Col xs="8" className="align-self-center wrap"><label><i>{this.props.description}</i></label></Col>
+        <Col xs="2" className="align-self-center"><TaskDateFormatter value={this.props.dateOfAdd} /></Col>
+        <Col xs="2"  className="align-self-center"><center>
           <ButtonGroup>
             { !this.props.made 
               
@@ -32,6 +34,7 @@ class Task extends React.Component {
               handlerYes={() => this.props.onRequestMethod(this.props.id, RequestMethod.DELETE_deleteTask, 'DELETE')}
               />
           </ButtonGroup>
+          </center>
         </Col>
       </Row>
     )

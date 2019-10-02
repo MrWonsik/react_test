@@ -1,7 +1,7 @@
 import * as React from 'react';
 import './TasksList.css';
 import Task from './Task';
-import { Container, Alert } from 'react-bootstrap';
+import { Container, Alert, Row, Col } from 'react-bootstrap';
 
 class TasksList extends React.Component {
 
@@ -10,17 +10,29 @@ class TasksList extends React.Component {
     const id = task.id;
     const taskDescription = task.description;
     const made = task.made;
-    return <Task key={id} id={id} description={taskDescription} made={made} onRequestMethod={this.props.onRequestMethod}/>;
+    const dateOfAdd = task.dateOfAdd;
+    return <Task key={id} id={id} description={taskDescription} made={made} dateOfAdd={dateOfAdd} onRequestMethod={this.props.onRequestMethod}/>;
   };
 
   render() {
-
+    if( this.props.tasks.length !== 0){
       return (
         <Container className="tasks-container">
-            { this.props.tasks.length === 0 ? <Alert variant='info'><center>This tasks list is empty!</center></Alert> : this.props.tasks.map(this.taskToTasksList) }
+         <Row id="header-row"> 
+          <Col>Description</Col>
+          <Col xs="2">Date of add</Col>
+          <Col xs="2">Options</Col>
+        </Row>
+           { this.props.tasks.map(this.taskToTasksList) }
         </Container>
       );
-    } 
+    }
+
+    return (
+      <Alert variant='info'><center>This tasks list is empty!</center></Alert>
+    );
+      
+  } 
 
 }
 

@@ -13,8 +13,6 @@ I create a frontend to [REST API](https://github.com/MrWonsik/task_planner). I u
 - modal after click on delete button,
 
 ## TODO:
-- sorting tasks by add date,
-- adding date of complete task,
 - editing task,
 
 
