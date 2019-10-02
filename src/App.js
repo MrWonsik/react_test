@@ -3,6 +3,9 @@ import * as RequestMethod from './RequestMethod'
 import './App.css';
 import TasksList from './TasksList';
 import { Button, InputGroup, FormControl, Tabs, Tab, Spinner } from 'react-bootstrap';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCalendarPlus } from '@fortawesome/free-solid-svg-icons';
+
 
  class App extends React.Component {
 
@@ -25,15 +28,26 @@ import { Button, InputGroup, FormControl, Tabs, Tab, Spinner } from 'react-boots
             <InputGroup className="mb-3">
               <FormControl value={this.state.newTask} onChange={this.saveInput} placeholder="Add new task!"/>
               <InputGroup.Append>
-                <Button variant="outline-info" onClick={this.addTask}>Add task!</Button>  
+                <Button variant="info" onClick={this.addTask}><FontAwesomeIcon icon = {faCalendarPlus}/></Button>  
               </InputGroup.Append>  
             </InputGroup>
             <Tabs defaultActiveKey="todo" id="uncontrolled-tab-example">
               <Tab eventKey="todo" title="TODO">
-                {  !this.state.isLoading  ? <TasksList tasks={ this.state.tasksToDo } onRequestMethod={this.doRequest} /> : <center><Spinner animation="border" ></Spinner></center> }
+                <div className="tabs-content">
+                  {  !this.state.isLoading  
+                    ? <TasksList tasks={ this.state.tasksToDo } onRequestMethod={this.doRequest} /> 
+                    : <center><Spinner className="loading-spinner" animation="border" ></Spinner></center> 
+                  }
+                </div>
               </Tab>
               <Tab eventKey="completed" title="Complete">
-                {  !this.state.isLoading  ? <TasksList tasks={ this.state.tasksComplete } onRequestMethod={this.doRequest}/> : <center><Spinner animation="border" ></Spinner></center> }
+                <div className="tabs-content">
+                {  
+                  !this.state.isLoading  
+                  ? <TasksList tasks={ this.state.tasksComplete } onRequestMethod={this.doRequest}/> 
+                  : <center><Spinner className="loading-spinner" animation="border" ></Spinner></center> 
+                }
+                </div>
               </Tab>
             </Tabs>
         </div>

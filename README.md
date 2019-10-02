@@ -10,12 +10,12 @@ I create a frontend to [REST API](https://github.com/MrWonsik/task_planner). I u
 - deleting task,
 - undoying completed task,
 - refreshing after add, delete, edit and undo task,
+- modal after click on delete button,
 
 ## TODO:
 - sorting tasks by add date,
 - adding date of complete task,
 - editing task,
-- modal after click on delete, edit or undo button,
 
 
 # Create React App:

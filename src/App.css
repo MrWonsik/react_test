@@ -2,3 +2,11 @@
   padding: 20px 25%;
   border: 1px;
 }
+
+.tabs-content {
+  padding: 5px;
+}
+
+.loading-spinner {
+  margin-top: 20px;
+}

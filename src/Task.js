@@ -16,19 +16,19 @@ class Task extends React.Component {
           <ButtonGroup>
             { !this.props.made 
               
-              ? <Button variant="success" size="sm" onClick={() => this.props.onRequestMethod(this.props.id, RequestMethod.PUT_completeTask, 'PUT') }>
-                  <FontAwesomeIcon icon={ faCheck }/>
+              ? <Button variant="outline-light" size="sm" onClick={() => this.props.onRequestMethod(this.props.id, RequestMethod.PUT_completeTask, 'PUT') }>
+                  <FontAwesomeIcon size='2x' color="green" icon={ faCheck }/>
                 </Button> 
               
-              : <Button variant="secondary" size="sm" onClick={() => this.props.onRequestMethod(this.props.id, RequestMethod.PUT_undoCompleteTask, 'PUT') }>
-                  <FontAwesomeIcon icon={ faUndo } />
+              : <Button variant="outline-light" size="sm" onClick={() => this.props.onRequestMethod(this.props.id, RequestMethod.PUT_undoCompleteTask, 'PUT') }>
+                  <FontAwesomeIcon size='2x' color="grey" icon={ faUndo } />
                 </Button> 
             }
               <ModalForRequest 
               modalTitle="DELETE"
               modalBody={"Are you really want to delete this item?"}
-              buttonVariant="danger" 
-              buttonLabel={<FontAwesomeIcon icon = {faTimes}/>}
+              buttonVariant="outline-light" 
+              buttonLabel={<FontAwesomeIcon size='2x' color="red" icon = {faTimes}/>}
               handlerYes={() => this.props.onRequestMethod(this.props.id, RequestMethod.DELETE_deleteTask, 'DELETE')}
               />
           </ButtonGroup>
