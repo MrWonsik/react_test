@@ -2,6 +2,7 @@ import * as React from 'react';
 import * as RequestMethod from './RequestMethod'
 import './App.css';
 import TasksList from './TasksList';
+import TaskModal from './ModalForRequest';
 import { Button, InputGroup, FormControl, Tabs, Tab, Spinner } from 'react-bootstrap';
 
  class App extends React.Component {
@@ -9,15 +10,18 @@ import { Button, InputGroup, FormControl, Tabs, Tab, Spinner } from 'react-boots
   constructor(props) {
     super(props);
 
-    console.log(this.deleteTask);
-
     this.state = {
       tasksToDo: [],
       tasksComplete: [],
       newTask: '',
       isLoading: true,
+      showModal: false,
     };
+
+    this.handleClick = this.handleClick.bind(this);
   }
+  
+  
 
   render(){
     return (
@@ -35,10 +39,18 @@ import { Button, InputGroup, FormControl, Tabs, Tab, Spinner } from 'react-boots
               <Tab eventKey="completed" title="Complete">
                 {  !this.state.isLoading  ? <TasksList tasks={ this.state.tasksComplete } onRequestMethod={this.doRequest}/> : <center><Spinner animation="border" ></Spinner></center> }
               </Tab>
+              <Tab eventKey="test" title="TEST">
+                  <TaskModal variant="warning" buttonLabel="Click me!" />
+              </Tab>
             </Tabs>
         </div>
 
       );
+  }
+
+  handleClick() {
+    console.log(this.state.showModal)
+    this.setState({ showModal: true});
   }
 
   fetchTasksList() {
