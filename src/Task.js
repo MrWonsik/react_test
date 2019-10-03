@@ -17,10 +17,6 @@ class Task extends React.Component {
     };
   }
 
-  OverlayTriggerForInput = () => { 
-    
-  }
-
   render(){
 
     return (
@@ -47,10 +43,11 @@ class Task extends React.Component {
                         this.setState = () => ({ descriptionIsClicked: false})
                       } 
                     }
-                  } 
+                  }
+                  
                 />
               </OverlayTrigger>         
-              : this.props.description
+              : <i>{this.props.description}</i>
             }
           </div>
         </Col>
@@ -79,6 +76,10 @@ class Task extends React.Component {
         </Col>
       </Row>
     )
+  }
+
+  handleBlur = () => {
+    this.setState({ descriptionIsClicked: false, newDescription: this.props.description})
   }
 
   saveInput = (e) => {

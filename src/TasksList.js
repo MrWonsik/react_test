@@ -12,7 +12,16 @@ class TasksList extends React.Component {
     const made = task.made;
     const dateOfAdd = task.dateOfAdd;
     const dateOfComplete = task.dateOfComplete;
-    return <Task key={id} id={id} description={taskDescription} made={made} dateOfAdd={dateOfAdd} dateOfComplete={dateOfComplete} onRequestMethod={this.props.onRequestMethod} onEditMethod={this.props.onEditMethod}/>;
+    return <Task 
+    key={id} 
+    id={id} 
+    description={taskDescription} 
+    made={made} 
+    dateOfAdd={dateOfAdd} 
+    dateOfComplete={dateOfComplete} 
+    onRequestMethod={this.props.onRequestMethod} 
+    onEditMethod={this.props.onEditMethod}
+    />;
   };
 
   render() {

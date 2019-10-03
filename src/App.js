@@ -4,7 +4,7 @@ import './App.css';
 import TasksList from './TasksList';
 import { Button, InputGroup, FormControl, Tabs, Tab, Spinner } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCalendarPlus } from '@fortawesome/free-solid-svg-icons';
+import { faPlus } from '@fortawesome/free-solid-svg-icons';
 
 
  class App extends React.Component {
@@ -36,7 +36,7 @@ import { faCalendarPlus } from '@fortawesome/free-solid-svg-icons';
               />
                 
               <InputGroup.Append>
-                <Button variant="info" onClick={this.addTask}><FontAwesomeIcon icon = {faCalendarPlus}/></Button>  
+                <Button variant="info" onClick={this.addTask}><FontAwesomeIcon icon = {faPlus}/></Button>  
               </InputGroup.Append>  
             </InputGroup>
             <Tabs defaultActiveKey="todo" id="uncontrolled-tab-example">
