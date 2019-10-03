@@ -27,7 +27,7 @@ class Task extends React.Component {
       <Row className="row-with-padding">    
         <Col xs="7" sm="7" className="align-self-center wrap">
           <div onClick={this.changeStateOfDescription} >
-            { this.state.descriptionIsClicked 
+            { this.state.descriptionIsClicked && !this.props.made
               ? <OverlayTrigger 
               key="top"
               placement="top"
@@ -54,7 +54,7 @@ class Task extends React.Component {
             }
           </div>
         </Col>
-        <Col xs="3" className="align-self-center"><TaskDateFormatter value={this.props.dateOfAdd} /></Col>
+          <Col xs="3" className="align-self-center">{ !this.props.made ? <TaskDateFormatter value={this.props.dateOfAdd} /> :  <TaskDateFormatter value={this.props.dateOfComplete} /> } </Col>
         <Col xs="2"  className="align-self-center"><center>
           <ButtonGroup>
             { !this.props.made 

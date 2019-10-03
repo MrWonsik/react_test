@@ -43,7 +43,7 @@ import { faCalendarPlus } from '@fortawesome/free-solid-svg-icons';
               <Tab eventKey="todo" title="TODO">
                 <div className="tabs-content">
                   {  !this.state.isLoading  
-                    ? <TasksList tasks={ this.state.tasksToDo } onRequestMethod={this.doRequest} onEditMethod={this.editTask} /> 
+                    ? <TasksList category="todo" tasks={ this.state.tasksToDo } onRequestMethod={this.doRequest} onEditMethod={this.editTask} /> 
                     : <center><Spinner className="loading-spinner" animation="border" ></Spinner></center> 
                   }
                 </div>
@@ -52,7 +52,7 @@ import { faCalendarPlus } from '@fortawesome/free-solid-svg-icons';
                 <div className="tabs-content">
                 {  
                   !this.state.isLoading  
-                  ? <TasksList tasks={ this.state.tasksComplete } onRequestMethod={this.doRequest}/> 
+                  ? <TasksList category="completed" tasks={ this.state.tasksComplete } onRequestMethod={this.doRequest}/> 
                   : <center><Spinner className="loading-spinner" animation="border" ></Spinner></center> 
                 }
                 </div>
