@@ -5,3 +5,4 @@ export const POST_addTask = API + 'addTask';
 export const DELETE_deleteTask = API + 'deleteTask/';
 export const PUT_completeTask = API + 'completeTask/';
 export const PUT_undoCompleteTask = API + 'undoCompleteTask/';
+export const PUT_editTask = API + 'editTask/';

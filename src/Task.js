@@ -3,17 +3,58 @@ import * as RequestMethod from './RequestMethod'
 import ModalForRequest from './ModalForRequest'
 import TaskDateFormatter from './TaskDateFormatter'
 import './Task.css';
-import { Row, Col, Button, ButtonGroup } from 'react-bootstrap';
+import { Row, Col, Button, ButtonGroup, FormControl, OverlayTrigger, Tooltip } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheck, faTimes, faUndo } from '@fortawesome/free-solid-svg-icons';
 
 class Task extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      descriptionIsClicked: false,
+      newDescription: this.props.description,
+    };
+  }
+
+  OverlayTriggerForInput = () => { 
+    
+  }
+
   render(){
 
     return (
       <Row className="row-with-padding">    
-        <Col xs="8" className="align-self-center wrap"><label><i>{this.props.description}</i></label></Col>
-        <Col xs="2" className="align-self-center"><TaskDateFormatter value={this.props.dateOfAdd} /></Col>
+        <Col xs="7" sm="7" className="align-self-center wrap">
+          <div onClick={this.changeStateOfDescription} >
+            { this.state.descriptionIsClicked 
+              ? <OverlayTrigger 
+              key="top"
+              placement="top"
+              overlay={
+                <Tooltip id={'tooltip-top'}>
+                  Press enter to save.
+                </Tooltip>
+              } >
+              <FormControl 
+                  value={this.state.newDescription} 
+                  onChange={this.saveInput} 
+                  onKeyPress=
+                  {
+                    target => { 
+                      if (target.key === "Enter") { 
+                        this.props.onEditMethod(this.props.id, this.state.newDescription)
+                        this.setState = () => ({ descriptionIsClicked: false})
+                      } 
+                    }
+                  } 
+                />
+              </OverlayTrigger>         
+              : this.props.description
+            }
+          </div>
+        </Col>
+        <Col xs="3" className="align-self-center"><TaskDateFormatter value={this.props.dateOfAdd} /></Col>
         <Col xs="2"  className="align-self-center"><center>
           <ButtonGroup>
             { !this.props.made 
@@ -38,6 +79,18 @@ class Task extends React.Component {
         </Col>
       </Row>
     )
+  }
+
+  saveInput = (e) => {
+    this.setState({
+      newDescription: e.currentTarget.value
+    })
+  }
+
+  changeStateOfDescription = () => {
+    this.setState({
+      descriptionIsClicked: true,
+    });
   }
   
 }

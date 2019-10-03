@@ -11,6 +11,7 @@ import { Button, Modal} from 'react-bootstrap';
     };
 
     this.toggle = this.toggle.bind(this);
+
   }
 
   toggle() {

@@ -11,7 +11,7 @@ class TasksList extends React.Component {
     const taskDescription = task.description;
     const made = task.made;
     const dateOfAdd = task.dateOfAdd;
-    return <Task key={id} id={id} description={taskDescription} made={made} dateOfAdd={dateOfAdd} onRequestMethod={this.props.onRequestMethod}/>;
+    return <Task key={id} id={id} description={taskDescription} made={made} dateOfAdd={dateOfAdd} onRequestMethod={this.props.onRequestMethod} onEditMethod={this.props.onEditMethod}/>;
   };
 
   render() {
@@ -20,7 +20,7 @@ class TasksList extends React.Component {
         <Container className="tasks-container">
          <Row id="header-row"> 
           <Col>Description</Col>
-          <Col xs="2">Date of add</Col>
+          <Col xs="3">Date of add</Col>
           <Col xs="2">Options</Col>
         </Row>
            { this.props.tasks.map(this.taskToTasksList) }

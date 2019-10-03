@@ -26,7 +26,15 @@ import { faCalendarPlus } from '@fortawesome/free-solid-svg-icons';
     return (
         <div id="content">
             <InputGroup className="mb-3">
-              <FormControl value={this.state.newTask} onChange={this.saveInput} placeholder="Add new task!"/>
+              <FormControl value={this.state.newTask} onChange={this.saveInput} placeholder="Add new task!" 
+                onKeyPress= {target => { 
+                  if (target.key === "Enter") { 
+                    this.addTask()
+                  } 
+                }
+                }
+              />
+                
               <InputGroup.Append>
                 <Button variant="info" onClick={this.addTask}><FontAwesomeIcon icon = {faCalendarPlus}/></Button>  
               </InputGroup.Append>  
@@ -35,7 +43,7 @@ import { faCalendarPlus } from '@fortawesome/free-solid-svg-icons';
               <Tab eventKey="todo" title="TODO">
                 <div className="tabs-content">
                   {  !this.state.isLoading  
-                    ? <TasksList tasks={ this.state.tasksToDo } onRequestMethod={this.doRequest} /> 
+                    ? <TasksList tasks={ this.state.tasksToDo } onRequestMethod={this.doRequest} onEditMethod={this.editTask} /> 
                     : <center><Spinner className="loading-spinner" animation="border" ></Spinner></center> 
                   }
                 </div>
@@ -96,6 +104,20 @@ import { faCalendarPlus } from '@fortawesome/free-solid-svg-icons';
     });
   }
 
+  editTask = (id, newDescription) => {
+    fetch(RequestMethod.PUT_editTask + id, {
+      method: 'PUT',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: newDescription.toString()
+    }).then(response => {
+      if (response.status === 200) {
+        this.fetchTasksList(); 
+      }
+    });
+  }
 
   addTask = () => {
     fetch(RequestMethod.POST_addTask, {
