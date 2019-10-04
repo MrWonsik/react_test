@@ -5,7 +5,7 @@ import TaskDateFormatter from './TaskDateFormatter'
 import './Task.css';
 import { Row, Col, Button, ButtonGroup, FormControl, OverlayTrigger, Tooltip } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCheck, faTimes, faUndo } from '@fortawesome/free-solid-svg-icons';
+import { faCheck, faTrash, faUndo } from '@fortawesome/free-solid-svg-icons';
 
 class Task extends React.Component {
   constructor(props) {
@@ -20,9 +20,9 @@ class Task extends React.Component {
   render(){
 
     return (
-      <Row className="row-with-padding">    
-        <Col xs="7" sm="7" className="align-self-center wrap">
-          <div onClick={this.changeStateOfDescription} >
+      <Row className="row-with-task">    
+        <Col xs="7" sm="7" className="align-self-center wrap task-col" >
+          <div onClick={this.changeStateOfDescription} className="task-description">
             { this.state.descriptionIsClicked && !this.props.made
               ? <OverlayTrigger 
               key="top"
@@ -51,24 +51,24 @@ class Task extends React.Component {
             }
           </div>
         </Col>
-          <Col xs="3" className="align-self-center">{ !this.props.made ? <TaskDateFormatter value={this.props.dateOfAdd} /> :  <TaskDateFormatter value={this.props.dateOfComplete} /> } </Col>
-        <Col xs="2"  className="align-self-center"><center>
+          <Col xs="3" className="align-self-center task-col">{ !this.props.made ? <TaskDateFormatter value={this.props.dateOfAdd} /> :  <TaskDateFormatter value={this.props.dateOfComplete} /> } </Col>
+        <Col xs="2.5"  className="align-self-center task-col"><center>
           <ButtonGroup>
             { !this.props.made 
               
-              ? <Button variant="outline-light" size="sm" onClick={() => this.props.onRequestMethod(this.props.id, RequestMethod.PUT_completeTask, 'PUT') }>
+              ? <Button variant="no" size="sm" onClick={() => this.props.onRequestMethod(this.props.id, RequestMethod.PUT_completeTask, 'PUT') }>
                   <FontAwesomeIcon size='2x' color="green" icon={ faCheck }/>
                 </Button> 
               
-              : <Button variant="outline-light" size="sm" onClick={() => this.props.onRequestMethod(this.props.id, RequestMethod.PUT_undoCompleteTask, 'PUT') }>
+              : <Button xs="1" variant="no" size="sm" onClick={() => this.props.onRequestMethod(this.props.id, RequestMethod.PUT_undoCompleteTask, 'PUT') }>
                   <FontAwesomeIcon size='2x' color="grey" icon={ faUndo } />
                 </Button> 
             }
               <ModalForRequest 
               modalTitle="DELETE"
               modalBody={"Are you really want to delete this item?"}
-              buttonVariant="outline-light" 
-              buttonLabel={<FontAwesomeIcon size='2x' color="red" icon = {faTimes}/>}
+              buttonVariant="no" 
+              buttonLabel={<FontAwesomeIcon size='2x' color="red" icon = {faTrash}/>}
               handlerYes={() => this.props.onRequestMethod(this.props.id, RequestMethod.DELETE_deleteTask, 'DELETE')}
               />
           </ButtonGroup>

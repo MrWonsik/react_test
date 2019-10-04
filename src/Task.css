@@ -1,4 +1,20 @@
-.row-with-padding
+.row-with-task
+{
+  border-bottom: 1px dotted rgb(81, 128, 255);
+}
+
+.row-with-task:hover
+{
+  background-color: rgb(211, 223, 255);
+}
+
+.task-description:hover
+{
+  cursor: pointer;
+}
+
+.task-col
 {
   padding: 2px;
 }
+

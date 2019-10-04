@@ -6,7 +6,20 @@
 #header-row
 {
   text-align: center;
-  border-bottom: 1px dotted black;
+  border-bottom: 1px solid rgb(81, 128, 255);
+  border-top: 1px solid rgb(81, 128, 255);
+  color: rgb(81, 128, 255);
+  font-weight: bold;
+}
+
+.header-col
+{
+  padding: 10px;
+  border-left: 1px solid rgb(81, 128, 255);
+}
+.header-col:last-child
+{
+  border-right: 1px solid rgb(81, 128, 255);
 }
 
 .wrap { 

@@ -2,6 +2,8 @@ import * as React from 'react';
 import './TasksList.css';
 import Task from './Task';
 import { Container, Alert, Row, Col } from 'react-bootstrap';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faStickyNote, faCalendarPlus, faCalendarCheck, faBolt } from '@fortawesome/free-solid-svg-icons';
 
 class TasksList extends React.Component {
 
@@ -29,12 +31,18 @@ class TasksList extends React.Component {
       return (
         <Container className="tasks-container">
          <Row id="header-row"> 
-          <Col>Description</Col>
-          <Col xs="3">{this.props.category === "todo" ? <>Date of add</> : <>Date of complete</>}</Col>
-          <Col xs="2">Options</Col>
+          <Col  className="align-self-center header-col"><FontAwesomeIcon icon={ faStickyNote } /> DESCRIPTION</Col>
+          <Col xs="3"  className="align-self-center header-col">{this.props.category === "todo" ? <><FontAwesomeIcon icon={ faCalendarPlus } /> ADDED</> : <> <FontAwesomeIcon icon={ faCalendarCheck } /> COMPLETED</>}</Col>
+          <Col xs="2.5"  className="align-self-center header-col"><FontAwesomeIcon icon={ faBolt } /> OPTIONS</Col>
         </Row>
            { this.props.tasks.map(this.taskToTasksList) }
         </Container>
+      );
+    }
+
+    if(this.props.isError){
+      return(
+        <Alert variant='danger'><center>Something wrong! {this.props.error}</center></Alert>
       );
     }
 
