@@ -32,8 +32,8 @@ class TasksList extends React.Component {
         <Container className="tasks-container">
          <Row id="header-row"> 
           <Col className="align-self-center header-col"><FontAwesomeIcon icon={ faStickyNote } /> DESCRIPTION</Col>
-          <Col xs="auto"  className="align-self-center header-col">{this.props.category === "todo" ? <><FontAwesomeIcon icon={ faCalendarPlus } /> ADDED</> : <> <FontAwesomeIcon icon={ faCalendarCheck } /> COMPLETED</>}</Col>
-          <Col xs="auto"  className="align-self-center header-col"><FontAwesomeIcon icon={ faBolt } /> OPTIONS</Col>
+          <Col xs="2"  className="align-self-center header-col">{this.props.category === "todo" ? <><FontAwesomeIcon icon={ faCalendarPlus } /> ADDED</> : <> <FontAwesomeIcon icon={ faCalendarCheck } /> COMPLETED</>}</Col>
+          <Col xs="2"  className="align-self-center header-col"><FontAwesomeIcon icon={ faBolt } /> OPTIONS</Col>
         </Row>
            { this.props.tasks.map(this.taskToTasksList) }
         </Container>

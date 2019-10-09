@@ -51,8 +51,8 @@ class Task extends React.Component {
             }
           </div>
         </Col>
-          <Col xs="auto" className="align-self-center task-col">{ !this.props.made ? <TaskDateFormatter value={this.props.dateOfAdd} /> :  <TaskDateFormatter value={this.props.dateOfComplete} /> } </Col>
-        <Col xs="auto"  className="align-self-center task-col"><center>
+          <Col xs="2" className="align-self-center task-col">{ !this.props.made ? <TaskDateFormatter value={this.props.dateOfAdd} /> :  <TaskDateFormatter value={this.props.dateOfComplete} /> } </Col>
+        <Col xs="2"  className="align-self-center task-col"><center>
           <ButtonGroup>
             { !this.props.made 
               
