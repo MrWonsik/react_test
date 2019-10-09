@@ -14,7 +14,8 @@ I create a frontend to [REST API](https://github.com/MrWonsik/task_planner). I u
 - editing task,
 
 ## TODO:
-- repairing bug: delayed refresh while dual edit the same task
+- repairing bug: delayed refresh while dual edit the same task,
+- add auto refresh on tasks list,
 
 
 # Create React App:
