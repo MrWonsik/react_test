@@ -1,4 +1,4 @@
-export const API = "http://192.168.0.127:8080/planner/";
+export const API = "http://achilles:8080/planner/";
 export const GET_madeTasks = API + 'getMadeTasks';
 export const GET_tasksToDo = API + 'getTasksToDo';
 export const POST_addTask = API + 'addTask';
